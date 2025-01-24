@@ -24,9 +24,20 @@
     <div class="container auto title">
         <h1 class="title">CrackPortal&trade;</h1>
         <p>Crack Shack&reg; Employee Portal</p>
+    </div>
+    <div class="container auto">
         <p class="logged-in-indicator" style="display: none;">Logged in as <strong class="username-here"></strong></p>
     </div>
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; overflow: visible; gap: 20px;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; overflow: visible; gap: 20px; margin-bottom: 20px;">
+        <a class="container" href="https://docs.google.com/forms/d/e/1FAIpQLSevoFJog6d9fs-m3GJbbrQt1H8491doG-h6abyTuYWcOHQMnw/viewform?usp=header" target="_blank">
+            <i class="fa-solid fa-calendar-days fa-7x icon"></i>
+            <h2>Clock In Now</h2>
+        </a>
+        <a class="container" href="https://docs.google.com/forms/d/e/1FAIpQLSdX_80f-bF63EPV653yQFki5IbCm6cR9BZAjU9zoecnMlv2qA/viewform?usp=header" target="_blank">
+            <i class="fa-solid fa-calendar-days fa-7x icon"></i>
+            <h2>Clock Out Now</h2>
+        </a>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; overflow: visible; gap: 20px; margin-bottom: 20px;">
         <a class="container" href="https://docs.google.com/spreadsheets/d/1CyIUpJJ4mcRAOdlFlmakE9Wp3Si47D4LyykFVu3emdg/edit?gid=188184402#gid=188184402" target="_blank">
             <i class="fa-solid fa-user fa-7x icon"></i>
             <h2>View Employee List</h2>
@@ -47,6 +58,10 @@
             <i class="fa-solid fa-book-bookmark fa-7x icon"></i>
             <h2>See Enchant Stock</h2>
         </a>
+        <a class="container" href="https://docs.google.com/spreadsheets/d/1CyIUpJJ4mcRAOdlFlmakE9Wp3Si47D4LyykFVu3emdg/edit?gid=1209203038#gid=1209203038" target="_blank">
+            <i class="fa-solid fa-calendar-days fa-7x icon"></i>
+            <h2>See Timesheet</h2>
+        </a>
         <a class="container" href="https://docs.google.com/forms/d/e/1FAIpQLScY82RqlaxF4omUkQKUHD6hVGblv0926f0rUUFdMA1iaE_cxg/viewform?usp=header" target="_blank">
             <i class="fa-solid fa-money-bills fa-7x icon"></i>
             <h2>Log Transaction</h2>
@@ -55,6 +70,8 @@
             <i class="fa-solid fa-truck fa-7x icon disabled"></i>
             <h2 class="disabled">Log Resource Gathering</h2>
         </a>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; overflow: visible; gap: 20px; margin-top: -20px">
         <a class="container" href="https://discord.com/channels/1266454488265392179/1278060398804865195" target="_blank">
             <i class="fa-brands fa-discord fa-7x icon"></i>
             <h2>View Discord</h2>
@@ -64,7 +81,6 @@
             <h2>Get Help</h2>
         </a>
     </div>
-    <br><br>
 
     <script>
         // Define the allowed usernames and the correct password
@@ -86,8 +102,22 @@
         }
 
         function checkLogin() {
+
             const enteredUsername = document.getElementById('username').value;
             const enteredPassword = document.getElementById('password').value;
+            // Input validation rules
+            const usernamePattern = /^[a-zA-Z0-9_]{3,16}$/;
+            const passwordPattern = /^[a-zA-Z0-9!@#$%^&*()_+=-]{6,20}$/;
+
+            if (!usernamePattern.test(enteredUsername)) {
+                alert("Invalid username. Use only letters, numbers, and underscores (3-16 characters).");
+                return;
+            }
+
+            if (!passwordPattern.test(enteredPassword)) {
+                alert("Invalid password. Use 6-20 characters with letters, numbers, or special characters.");
+                return;
+            }
 
             // Check if the entered username is in the allowed list and password is correct
             if (allowedUsernames.includes(enteredUsername) && enteredPassword === decodedPassword) {
