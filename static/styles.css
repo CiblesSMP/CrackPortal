@@ -1,0 +1,144 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    align-items: center;
+    background-color: #000000;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #E542AD;
+}
+
+h2 {
+    margin-top: 15px;
+    font-size: 1.6em;
+    color: #E542AD;
+}
+
+h2.disabled {
+    color: #8C8C8C;
+}
+
+p {
+    font-size: 1.2em;
+    margin: 0px;
+    color: #e542ad;
+}
+
+footer {
+    position: absolute;
+    bottom: 10px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.icon {
+    margin-top: 15px;
+    color: #e542ad;
+    height: auto;
+    width: auto;
+}
+
+.icon.disabled {
+    margin-top: 15px;
+    color: #8C8C8C;
+    height: auto;
+    width: auto;
+}
+
+.title {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background: #ffcdee;
+    border-radius: 15px;
+    padding: 20px;
+    width: 300px;
+    height: 170px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1), 
+                0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.container.auto {
+    width: auto !important;
+    height: auto  !important;
+    margin-bottom: 20px !important;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.container.title {
+    margin-top: 15px;
+}
+
+.container.disabled {
+    cursor: not-allowed;
+}
+
+.container:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 
+                0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.password-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.password-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.password-box input {
+    background: transparent;
+    border: 3px solid #E542AD;
+    border-radius: 3px;
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+}
+
+.password-box button {
+    background: #E542AD;
+    border: transparent;
+    border-radius: 10px;
+    color: #FFFFFF;
+    padding: 10px;
+}
+
+.password-box button:hover {
+    background: #B5197F;
+    border: transparent;
+    border-radius: 10px;
+    color: #FFFFFF;
+    padding: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 
+                0 2px 6px rgba(0, 0, 0, 0.1);
+}

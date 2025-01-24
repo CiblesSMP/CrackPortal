@@ -3,76 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Construction</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f3f4f6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        h1 {
-            font-size: 2.5em;
-            color: #ff5733;
-        }
-        p {
-            font-size: 1.2em;
-            margin: 10px 0;
-        }
-        .construction-icon {
-            font-size: 4em;
-            margin: 20px 0;
-        }
-        #countdown {
-            font-size: 1.5em;
-            color: #007bff;
-        }
-        footer {
-            position: absolute;
-            bottom: 10px;
-            font-size: 0.9em;
-            color: #666;
-        }
-    </style>
+    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>CrackPortal&trade;</title>
 </head>
 <body>
-    <div class="construction-icon">🚧</div>
-    <h1>We're cooking the meth behind the scenes!</h1>
-    <p>This page is under construction. Please check back soon.</p>
-    <p id="countdown">Time remaining: <span id="time"></span></p>
-    <footer>&copy; 2025 Crack Shack&reg;</footer>
+    <!-- Username and Password prompt overlay -->
+    <div class="password-overlay">
+        <div class="password-box">
+            <h2>CrackPortal&trade; Login:</h2>
+            <input type="text" id="username" placeholder="Minecraft Username">
+            <br><br>
+            <input type="password" id="password" placeholder="Portal Master Password">
+            <br><br>
+            <button onclick="checkLogin()">Submit</button>
+        </div>
+    </div>
+
+    <!-- Rest of the page content hidden initially -->
+    <div class="container auto title">
+        <h1 class="title">CrackPortal&trade;</h1>
+        <p>Crack Shack&reg; Employee Portal</p>
+        <p class="logged-in-indicator" style="display: none;">Logged in as <strong class="username-here"></strong></p>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; overflow: visible; gap: 20px;">
+        <a class="container" href="https://docs.google.com/spreadsheets/d/1CyIUpJJ4mcRAOdlFlmakE9Wp3Si47D4LyykFVu3emdg/edit?gid=188184402#gid=188184402" target="_blank">
+            <i class="fa-solid fa-user fa-7x icon"></i>
+            <h2>View Employee List</h2>
+        </a>
+        <a class="container">
+            <i class="fa-solid fa-hand-holding-hand fa-7x icon"></i>
+            <h2>See Handbook</h2>
+        </a>
+        <a class="container">
+            <i class="fa-solid fa-coins fa-7x icon"></i>
+            <h2>View Price Guide</h2>
+        </a>
+        <a class="container">
+            <i class="fa-solid fa-gem fa-7x icon"></i>
+            <h2>See Valuables</h2>
+        </a>
+        <a class="container">
+            <i class="fa-solid fa-book-bookmark fa-7x icon"></i>
+            <h2>See Enchant Stock</h2>
+        </a>
+        <a class="container disabled">
+            <i class="fa-solid fa-money-bills fa-7x icon disabled"></i>
+            <h2 class="disabled">Log Transaction</h2>
+        </a>
+        <a class="container disabled">
+            <i class="fa-solid fa-truck fa-7x icon disabled"></i>
+            <h2 class="disabled">Log Resource Gathering</h2>
+        </a>
+        <a class="container" href="https://discord.com/channels/1266454488265392179/1278060398804865195" target="_blank">
+            <i class="fa-brands fa-discord fa-7x icon"></i>
+            <h2>View Discord</h2>
+        </a>
+        <a class="container" href="https://discord.com/channels/1266454488265392179/1278060398804865195" target="_blank">
+            <i class="fa-solid fa-circle-question fa-7x icon"></i>
+            <h2>Get Help</h2>
+        </a>
+    </div>
+    <br><br>
 
     <script>
-        // Countdown timer script
-        const endTime = new Date('2025-01-24T16:00:00'); // Janurary 24th, 2025, at 4:00 PM
+        // Define the allowed usernames and the correct password
+        const allowedUsernames = ['ZcraftElite', 'Redy2794', 'ghastlyGrenadine', 'Bicycle4096', 'Waffledog96', 'pokemonpengwin', 'JuneOrchid']; // Add more usernames here
+        const correctPassword = 'Q3JAY2tTaGFjazJPMjU='; // Change this to your desired password
+        const decodedPassword = atob(correctPassword);
 
-        function updateCountdown() {
-            const now = new Date();
-            const timeLeft = endTime - now;
+        // Check if the login cookie exists
+        if (document.cookie.includes('loginEntered=true')) {
+            // If login is saved in cookie, skip the prompt and show content
+            document.querySelector('.password-overlay').style.display = 'none';
+            document.querySelector('.logged-in-indicator').style.display = 'inline-block'
 
-            if (timeLeft <= 0) {
-                document.getElementById('countdown').textContent = "We're live!";
-                return;
-            }
-
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            document.getElementById('time').textContent =
-                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            // Retrieve username from cookie and update the page
+            const username = getCookie('username');
+            document.querySelectorAll('.username-here').forEach(element => {
+                element.textContent = username;
+            });
         }
 
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
+        function checkLogin() {
+            const enteredUsername = document.getElementById('username').value;
+            const enteredPassword = document.getElementById('password').value;
+
+            // Check if the entered username is in the allowed list and password is correct
+            if (allowedUsernames.includes(enteredUsername) && enteredPassword === decodedPassword) {
+                // Save the login validation to a cookie
+                document.cookie = "loginEntered=true; path=/; max-age=" + (60 * 60 * 24 * 30); // 30 days expiration
+                document.cookie = "username=" + enteredUsername + "; path=/; max-age=" + (60 * 60 * 24 * 30); // Save the username
+
+                // Hide the login prompt
+                document.querySelector('.password-overlay').style.display = 'none';
+                document.querySelector('.logged-in-indicator').style.display = 'inline-block'
+
+                // Update the page with the username
+                document.querySelectorAll('.username-here').forEach(element => {
+                    element.textContent = enteredUsername;
+                });
+            } else {
+                alert('Incorrect username or password, please try again.\n\nNote that your minecraft username is case sensitive.\nCheck Pinned Messages in the Employee GC for the password.');
+            }
+        }
+
+        // Function to get a cookie by name
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
     </script>
 </body>
 </html>
